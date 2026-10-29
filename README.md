@@ -1,31 +1,56 @@
-# GitHub Actions CI/CD Demo
+# Automated CI/CD Pipeline with GitHub Actions
 
-![CI/CD Pipeline](https://github.com/YOUR-GITHUB-USERNAME/YOUR-REPOSITORY/actions/workflows/ci-cd.yml/badge.svg)
+![CI/CD Pipeline](https://github.com/vinitha0173-droid/github-actions-cicd-demo/actions/workflows/ci.yml/badge.svg)
 
-A beginner-friendly example of a CI/CD pipeline using GitHub Actions.
+## Project Overview
 
-## What it does
+This project demonstrates an automated CI/CD pipeline using GitHub Actions.
 
-- Runs Ruff lint checks.
-- Runs unit tests with pytest.
-- Builds a Docker image after linting and tests pass.
-- On pushes to `main`, publishes the image to GitHub Container Registry (GHCR).
-- Uses the automatically provided `GITHUB_TOKEN`; no Docker password is stored in source code.
+## Features
 
-## Run locally
+- Automated code linting with Ruff.
+- Unit testing with Pytest.
+- Docker image building.
+- Automatic workflow execution on pushes and pull requests to the main branch.
+
+## Technologies Used
+
+- Python 3.12
+- GitHub Actions
+- Ruff
+- Pytest
+- Docker
+
+## Run Locally
+
+Install dependencies:
 
 ```bash
 python -m pip install -r requirements.txt
-ruff check .
-pytest -v
-python app.py
-docker build -t github-actions-cicd-demo .
 ```
 
-## GitHub Actions
+Run linting:
 
-The workflow is `.github/workflows/ci-cd.yml`. It runs for pull requests targeting `main` and pushes to `main`.
+```bash
+ruff check .
+```
 
-After uploading this repository to GitHub, replace `YOUR-GITHUB-USERNAME` and `YOUR-REPOSITORY` in the badge URL with your GitHub username and repository name.
+Run unit tests:
 
-For image publishing, the workflow uses GitHub Container Registry and `secrets.GITHUB_TOKEN`. The repository workflow permissions include package publishing only in the build job.
+```bash
+pytest -v
+```
+
+Build the Docker image:
+
+```bash
+docker build -t trustlens-demo:latest .
+```
+
+## Workflow
+
+1. Code is pushed to the main branch.
+2. GitHub Actions installs Python dependencies.
+3. Ruff checks the code.
+4. Pytest executes unit tests.
+5. Docker builds the image after the tests pass.
